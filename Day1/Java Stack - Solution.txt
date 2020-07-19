@@ -1,0 +1,30 @@
+import java.util.*;
+class Solution{
+    
+    public static void main(String []argh)
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        while (sc.hasNextLine()) {
+            System.out.println(checkBalance(sc.nextLine().toCharArray()));
+        }
+        
+    }
+
+    public static boolean checkBalance(char[] inArray) {
+        Stack<Character> st = new Stack<>();
+        
+        for (char c : inArray) {
+            if (c == '[' || c == '{' || c == '(') {
+                st.push(c);
+            } else if (st.empty()) {
+                return false;
+            } else if (c == ']' && st.peek() == '[' || c == '}' && st.peek() == '{' || c == ')' && st.peek() == '('  ) {
+                st.pop();
+            } else {
+                return false;
+            }
+        }
+        return st.empty(); 
+    }
+}
