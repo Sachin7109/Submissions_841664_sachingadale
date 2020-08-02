@@ -1,0 +1,25 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+       
+        Scanner sc = new Scanner(System.in);
+        String message = sc.nextLine();
+        sc.close();
+
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        
+        messageDigest.reset();
+        messageDigest.update(message.getBytes());
+        
+        byte[] hash = messageDigest.digest();
+
+        for (byte b : hash) {
+            System.out.printf("%02x", b);
+        }
+
+    }
+}
